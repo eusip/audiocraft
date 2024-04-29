@@ -1,0 +1,12 @@
+# @package __global__
+
+# total samples obtained from MusicCaps = 5469
+# (out of 5521 due to AudioSet corrupted samples)
+datasource:
+  max_sample_rate: 96000
+  max_channels: 2
+
+  train: /Users/ebenge/datasets/musiverse/dataset/manifests/train
+  valid: /Users/ebenge/datasets/musiverse/dataset/manifests/valid
+  evaluate: null
+  generate: /Users/ebenge/datasets/musiverse/dataset/manifests/valid

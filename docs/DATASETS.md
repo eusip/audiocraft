@@ -1,7 +1,7 @@
 # AudioCraft datasets
 
 Our dataset manifest files consist in 1-json-per-line files, potentially gzipped,
-as `data.jsons` or `data.jsons.gz` files. This JSON contains the path to the audio
+as `data.jsonl` or `data.jsonl.gz` files. This JSON contains the path to the audio
 file and associated metadata. The manifest files are then provided in the configuration,
 as `datasource` sub-configuration. A datasource contains the pointers to the paths of
 the manifest files for each AudioCraft stage (or split) along with additional information
