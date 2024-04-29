@@ -1,5 +1,5 @@
 # please make sure you have already a pytorch install that is cuda enabled!
-av
+av==11.0.0
 einops
 flashy>=0.0.1
 hydra-core>=1.1
@@ -21,3 +21,5 @@ gradio
 torchmetrics
 encodec
 protobuf
+torchvision==0.16.0
+torchtext==0.16.0
