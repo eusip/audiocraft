@@ -6,7 +6,7 @@ datasource:
   max_sample_rate: 96000
   max_channels: 2
 
-  train: /Users/ebenge/datasets/musiverse/dataset/manifests/train
-  valid: /Users/ebenge/datasets/musiverse/dataset/manifests/valid
+  train: /root/dataset/manifests/train
+  valid: /root/dataset/manifests/valid
   evaluate: null
-  generate: /Users/ebenge/datasets/musiverse/dataset/manifests/valid
+  generate: /root/dataset/manifests/valid
