@@ -6,13 +6,16 @@
 defaults:
   - musicgen/default
   - /model: lm/musicgen_lm
-  - override /dset: audio/example
+  - override /model/lm/model_scale: small
+  - override /dset: musiversal
   - _self_
 
 efficient_attention_backend: 'xformers'
 
 autocast: true
-autocast_dtype: float16
+autocast_dtype: bfloat16
+
+# show: true
 
 # EnCodec large trained on mono-channel music audio sampled at 32khz
 # with a total stride of 640 leading to 50 frames/s.
@@ -21,29 +24,29 @@ autocast_dtype: float16
 compression_model_checkpoint: //pretrained/facebook/encodec_32khz
 
 sample_rate: 32000
-channels: 2
+channels: 1
 
-interleave_stereo_codebooks:
-  use: true
+# interleave_stereo_codebooks:
+#   use: true
 
 transformer_lm:
-  n_q: 8
+  n_q: 4
 
-codebooks_pattern:
-  delay:
-    delays: [0, 0, 1, 1, 2, 2, 3, 3]
+# codebooks_pattern:
+#   delay:
+#     delays: [0, 0, 1, 1, 2, 2, 3, 3]
 
 deadlock:
   use: true  # deadlock detection
 
 dataset:
-  batch_size: 2  # 32 GPUs
+  batch_size: 16  # 32 GPUs
   segment_duration: 60
   sample_on_weight: false  # Uniform sampling all the way
-  sample_on_duration: fa  lse  # Uniform sampling all the way
+  sample_on_duration: false  # Uniform sampling all the way
 
 generate:
-  every: 50
+  every: 25
   lm:
     use_sampling: true
     top_k: 250
@@ -51,15 +54,16 @@ generate:
 
 checkpoint:
   save_last: true
-  save_every: 100
+  save_every: 25
   keep_last: 10
 
 optim:
-  epochs: 1 #500
+  epochs: 125
   updates_per_epoch: 2000
   optimizer: dadam
   lr: 1
   ema:
+
     use: true
     updates: 10
     device: cpu

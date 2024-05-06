@@ -270,7 +270,6 @@ class CompressionSolver(base.StandardSolver):
                               device: tp.Union[torch.device, str] = 'cpu') -> models.CompressionModel:
         """Instantiate a CompressionModel from a given checkpoint path or dora sig.
         This method is a convenient endpoint to load a CompressionModel to use in other solvers.
-
         Args:
             checkpoint_path (Path or str): Path to checkpoint or dora sig from where the checkpoint is resolved.
                 This also supports pre-trained models by using a path of the form //pretrained/NAME.
@@ -292,7 +291,6 @@ class CompressionSolver(base.StandardSolver):
         cfg.device = device
         compression_model = models.builders.get_compression_model(cfg).to(device)
         assert compression_model.sample_rate == cfg.sample_rate, "Compression model sample rate should match"
-
         assert 'best_state' in state and state['best_state'] != {}
         assert 'exported' not in state, "When loading an exported checkpoint, use the //pretrained/ prefix."
         compression_model.load_state_dict(state['best_state']['model'])

@@ -15,6 +15,7 @@ import typing as tp
 
 from einops import rearrange
 import numpy as np
+
 import torch
 from torch import nn
 from transformers import EncodecModel as HFEncodecModel

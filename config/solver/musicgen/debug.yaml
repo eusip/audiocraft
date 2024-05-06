@@ -5,21 +5,25 @@
 defaults:
   - musicgen/default
   - /model: lm/musicgen_lm
-  - override /model/lm/model_scale: xsmall
-  - override /dset: musiversal
+#   - override /model/lm/model_scale: small
+  - override /dset: audio/example
   - _self_
 
-autocast: false
+efficient_attention_backend: 'xformers'
+
+autocast: true
+autocast_dtype: bfloat16
+
 compression_model_checkpoint: //pretrained/debug_compression_model
 transformer_lm:
   n_q: 4
   card: 400
 
-conditioners:
-  description:
-    model: t5
-    t5:
-      name: t5-small
+# conditioners:
+#   description:
+#     model: t5
+#     t5:
+#       name: t5-small
 
 codebooks_pattern:
   modeling: parallel
@@ -31,8 +35,8 @@ deadlock:
   use: false  # deadlock detection
 
 dataset:
-  batch_size: 4
-  segment_duration: 5
+  batch_size: 16
+  segment_duration: 15
   sample_on_weight: false  # Uniform sampling all the way
   sample_on_duration: false  # Uniform sampling all the way
 
